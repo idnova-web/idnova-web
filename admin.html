@@ -4,10 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>IDNova Admin V1.0</title>
-
+<title>IDNova Admin V1.1</title>
 
 <style>
 
@@ -18,27 +17,29 @@ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI";
 
 body{
 margin:0;
-background:#f5f6fa;
+background:#f5f5f7;
 color:#111;
 }
 
 
 .login{
+
 height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
+
 }
 
 
-.box{
+.login-box{
 
+width:90%;
+max-width:380px;
 background:#111;
 color:white;
 padding:40px;
-border-radius:25px;
-width:90%;
-max-width:400px;
+border-radius:30px;
 text-align:center;
 
 }
@@ -47,7 +48,7 @@ text-align:center;
 input{
 
 width:100%;
-padding:15px;
+padding:14px;
 margin:10px 0;
 border-radius:12px;
 border:0;
@@ -58,19 +59,39 @@ border:0;
 button{
 
 width:100%;
-padding:15px;
+padding:14px;
 border:0;
-border-radius:15px;
+border-radius:12px;
 background:white;
-font-size:16px;
 
 }
 
 
-.dashboard{
+.admin{
 
 display:none;
 padding:25px;
+
+}
+
+
+.header{
+
+background:#111;
+color:white;
+padding:30px;
+border-radius:25px;
+
+}
+
+
+
+.cards{
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-top:20px;
 
 }
 
@@ -80,23 +101,13 @@ padding:25px;
 background:white;
 padding:20px;
 border-radius:20px;
-margin-bottom:20px;
 
 }
 
 
-.stats{
+.num{
 
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-
-}
-
-
-.number{
-
-font-size:30px;
+font-size:32px;
 font-weight:bold;
 
 }
@@ -105,14 +116,19 @@ font-weight:bold;
 table{
 
 width:100%;
+margin-top:20px;
 border-collapse:collapse;
+
+background:white;
+border-radius:20px;
+overflow:hidden;
 
 }
 
 
-td,th{
+th,td{
 
-padding:12px;
+padding:15px;
 border-bottom:1px solid #eee;
 
 }
@@ -127,9 +143,21 @@ border-radius:8px;
 
 
 
+@media(max-width:700px){
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
 </style>
 
 </head>
+
 
 
 <body>
@@ -138,67 +166,84 @@ border-radius:8px;
 <div class="login" id="login">
 
 
-<div class="box">
+<div class="login-box">
 
 <h1>IDNova</h1>
 
-<p>Admin V1.0</p>
+<p>Admin V1.1</p>
 
 
-<input id="user" placeholder="管理员账号">
+<input id="account"
+placeholder="管理员账号">
 
 
-<input id="pass" type="password" placeholder="密码">
+<input id="password"
+type="password"
+placeholder="密码">
 
 
 <button onclick="login()">
-登录后台
+进入后台
 </button>
 
 
 </div>
 
-
 </div>
 
 
 
 
 
-<div class="dashboard" id="dashboard">
 
+<div class="admin" id="admin">
+
+
+<div class="header">
 
 <h1>
-IDNova 管理后台
+IDNova 管理中心
 </h1>
 
+<p>
+服务申请管理系统
+</p>
 
-<div class="stats">
-
-
-<div class="card">
-
-<div class="number">12</div>
-
-申请数量
 
 </div>
 
 
 
+<div class="cards">
+
+
 <div class="card">
 
-<div class="number">5</div>
+<div class="num">
+12
+</div>
+
+总申请
+
+</div>
+
+
+<div class="card">
+
+<div class="num">
+5
+</div>
 
 处理中
 
 </div>
 
 
-
 <div class="card">
 
-<div class="number">7</div>
+<div class="num">
+7
+</div>
 
 完成
 
@@ -215,9 +260,11 @@ IDNova 管理后台
 
 
 <h2>
-服务申请管理
+申请列表
 </h2>
 
+
+<input placeholder="搜索客户">
 
 
 <table>
@@ -267,13 +314,13 @@ ID20260714001
 完成
 </option>
 
-
 </select>
 
 
 </td>
 
 </tr>
+
 
 
 
@@ -299,11 +346,10 @@ ID20260714002
 完成
 </option>
 
-
 </select>
 
-</td>
 
+</td>
 
 </tr>
 
@@ -321,34 +367,34 @@ ID20260714002
 
 
 
+
+
 <script>
 
 
 function login(){
 
 
-let u=document.getElementById("user").value;
+let a=document.getElementById("account").value;
 
-let p=document.getElementById("pass").value;
+let p=document.getElementById("password").value;
 
 
 
-if(u=="admin"&&p=="123456"){
+if(a=="admin" && p=="123456"){
 
 
 document.getElementById("login").style.display="none";
 
 
-document.getElementById("dashboard").style.display="block";
+document.getElementById("admin").style.display="block";
 
 
 }
 
 else{
 
-
-alert("账号或密码错误");
-
+alert("账号密码错误");
 
 }
 
