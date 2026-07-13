@@ -4,142 +4,285 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>IDNova Admin V1.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IDNova Admin V1.2</title>
+
 
 <style>
 
 *{
 box-sizing:border-box;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI";
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;
 }
+
 
 body{
+
 margin:0;
-background:#f5f5f7;
+
+background:#f4f5f7;
+
 color:#111;
+
 }
 
+
+
+/* 登录页面 */
 
 .login{
 
 height:100vh;
+
 display:flex;
+
 align-items:center;
+
 justify-content:center;
 
 }
 
 
+
 .login-box{
 
 width:90%;
+
 max-width:380px;
-background:#111;
-color:white;
-padding:40px;
-border-radius:30px;
+
+background:white;
+
+padding:35px;
+
+border-radius:25px;
+
+box-shadow:0 20px 50px rgba(0,0,0,.15);
+
 text-align:center;
 
 }
 
 
-input{
+
+.login-box h1{
+
+margin-bottom:30px;
+
+font-size:32px;
+
+}
+
+
+
+.login-box input{
 
 width:100%;
-padding:14px;
+
+padding:15px;
+
 margin:10px 0;
+
+border:1px solid #ddd;
+
 border-radius:12px;
-border:0;
+
+font-size:16px;
 
 }
 
 
-button{
+
+.login-box button{
 
 width:100%;
-padding:14px;
-border:0;
+
+padding:15px;
+
+border:none;
+
 border-radius:12px;
-background:white;
+
+background:#111;
+
+color:white;
+
+font-size:16px;
 
 }
 
+
+
+
+/* 后台 */
 
 .admin{
 
 display:none;
-padding:25px;
+
+padding:20px;
 
 }
+
 
 
 .header{
 
 background:#111;
+
 color:white;
-padding:30px;
-border-radius:25px;
+
+padding:25px;
+
+border-radius:20px;
+
+margin-bottom:20px;
 
 }
+
+
+
+.header h1{
+
+margin:0;
+
+font-size:28px;
+
+}
+
 
 
 
 .cards{
 
 display:grid;
+
 grid-template-columns:repeat(3,1fr);
+
 gap:15px;
-margin-top:20px;
 
 }
+
 
 
 .card{
 
 background:white;
+
 padding:20px;
+
 border-radius:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.05);
 
 }
 
 
-.num{
+
+.card h3{
+
+margin:0;
+
+font-size:15px;
+
+color:#777;
+
+}
+
+
+
+.card p{
 
 font-size:32px;
+
+margin:15px 0 0;
+
 font-weight:bold;
 
 }
 
 
+
+
+
+.panel{
+
+background:white;
+
+margin-top:20px;
+
+padding:20px;
+
+border-radius:20px;
+
+}
+
+
+
+
+.search{
+
+width:100%;
+
+padding:14px;
+
+border-radius:12px;
+
+border:1px solid #ddd;
+
+margin-bottom:15px;
+
+}
+
+
+
+
 table{
 
 width:100%;
-margin-top:20px;
+
 border-collapse:collapse;
 
-background:white;
-border-radius:20px;
-overflow:hidden;
-
 }
+
 
 
 th,td{
 
-padding:15px;
+padding:12px;
+
 border-bottom:1px solid #eee;
 
+text-align:left;
+
+}
+
+
+
+
+.btn{
+
+padding:8px 15px;
+
+border-radius:10px;
+
+border:none;
+
+background:#111;
+
+color:white;
+
 }
 
 
-select{
 
-padding:8px;
-border-radius:8px;
+.delete{
+
+background:#e53935;
 
 }
+
 
 
 
@@ -151,208 +294,217 @@ grid-template-columns:1fr;
 
 }
 
+
+table{
+
+font-size:13px;
+
+}
+
+
 }
 
 
 </style>
 
-</head>
+
+</head><body>
 
 
-
-<body>
-
+<!-- 登录 -->
 
 <div class="login" id="login">
 
 
 <div class="login-box">
 
+
 <h1>IDNova</h1>
 
-<p>Admin V1.1</p>
+<p>管理员登录</p>
 
 
-<input id="account"
+<input 
+id="username"
 placeholder="管理员账号">
 
 
-<input id="password"
+<input 
+id="password"
 type="password"
-placeholder="密码">
+placeholder="管理员密码">
+
 
 
 <button onclick="login()">
-进入后台
+
+登录后台
+
 </button>
 
 
 </div>
 
+
 </div>
 
 
 
 
-
+<!-- 后台 -->
 
 <div class="admin" id="admin">
 
 
+
 <div class="header">
 
-<h1>
-IDNova 管理中心
-</h1>
+
+<h1>IDNova Admin V1.2</h1>
+
 
 <p>
-服务申请管理系统
+服务申请管理中心
 </p>
+
+
+<button class="btn" onclick="logout()">
+
+退出登录
+
+</button>
 
 
 </div>
 
+
+
+
+<!-- 数据统计 -->
 
 
 <div class="cards">
 
 
-<div class="card">
-
-<div class="num">
-12
-</div>
-
-总申请
-
-</div>
-
 
 <div class="card">
 
-<div class="num">
-5
+<h3>
+今日申请
+</h3>
+
+<p id="today">
+
+0
+
+</p>
+
 </div>
 
+
+
+<div class="card">
+
+<h3>
+全部申请
+</h3>
+
+<p id="total">
+
+0
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
 处理中
+</h3>
 
-</div>
+<p id="doing">
 
+0
 
-<div class="card">
-
-<div class="num">
-7
-</div>
-
-完成
-
-</div>
-
+</p>
 
 </div>
 
 
 
+</div>
 
 
-<div class="card">
+
+
+
+
+<!-- 申请列表 -->
+
+
+<div class="panel">
 
 
 <h2>
-申请列表
+服务申请列表
 </h2>
 
 
-<input placeholder="搜索客户">
+
+<input
+
+class="search"
+
+placeholder="搜索姓名/电话/地区"
+
+oninput="searchData()">
 
 
 <table>
 
 
+<thead>
+
 <tr>
 
 <th>
-编号
+姓名
 </th>
 
 <th>
-客户
+电话
+</th>
+
+<th>
+地区
+</th>
+
+<th>
+需求
 </th>
 
 <th>
 状态
 </th>
 
-</tr>
-
-
-
-<tr>
-
-<td>
-ID20260714001
-</td>
-
-<td>
-张三
-</td>
-
-<td>
-
-<select>
-
-<option>
-待处理
-</option>
-
-<option>
-处理中
-</option>
-
-<option>
-完成
-</option>
-
-</select>
-
-
-</td>
+<th>
+操作
+</th>
 
 </tr>
 
 
+</thead>
 
 
-<tr>
 
-<td>
-ID20260714002
-</td>
-
-<td>
-李四
-</td>
-
-<td>
-
-<select>
-
-<option>
-处理中
-</option>
-
-<option>
-完成
-</option>
-
-</select>
+<tbody id="list">
 
 
-</td>
-
-</tr>
-
+</tbody>
 
 
 </table>
@@ -362,45 +514,361 @@ ID20260714002
 
 
 
-</div>
+
+
+</div><script>
+
+
+// 默认管理员账号
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "123456";
+
+
+// 示例数据
+
+let data = JSON.parse(localStorage.getItem("idnovaData")) || [
+
+{
+name:"张先生",
+phone:"13888888888",
+area:"日本",
+need:"网站开发",
+status:"待处理"
+},
+
+{
+name:"李女士",
+phone:"13999999999",
+area:"中国",
+need:"系统咨询",
+status:"处理中"
+}
+
+];
 
 
 
 
-
-
-<script>
-
+// 登录
 
 function login(){
 
 
-let a=document.getElementById("account").value;
-
-let p=document.getElementById("password").value;
-
+let user =
+document.getElementById("username").value;
 
 
-if(a=="admin" && p=="123456"){
+let pass =
+document.getElementById("password").value;
 
 
-document.getElementById("login").style.display="none";
+
+if(user===ADMIN_USER && pass===ADMIN_PASS){
 
 
-document.getElementById("admin").style.display="block";
+localStorage.setItem(
+"idnovaLogin",
+"true"
+);
+
+
+showAdmin();
 
 
 }
 
 else{
 
-alert("账号密码错误");
+
+alert("账号或密码错误");
+
 
 }
 
 
 }
 
+
+
+
+// 显示后台
+
+function showAdmin(){
+
+
+document.getElementById("login")
+.style.display="none";
+
+
+document.getElementById("admin")
+.style.display="block";
+
+
+loadData();
+
+
+}
+
+
+
+
+// 退出
+
+function logout(){
+
+
+localStorage.removeItem(
+"idnovaLogin"
+);
+
+
+location.reload();
+
+
+}
+
+
+
+
+
+// 加载数据
+
+function loadData(){
+
+
+let list =
+document.getElementById("list");
+
+
+list.innerHTML="";
+
+
+data.forEach((item,index)=>{
+
+
+let tr=document.createElement("tr");
+
+
+
+tr.innerHTML=`
+
+<td>${item.name}</td>
+
+<td>${item.phone}</td>
+
+<td>${item.area}</td>
+
+<td>${item.need}</td>
+
+
+<td>
+
+<select onchange="changeStatus(${index},this.value)">
+
+<option ${item.status=="待处理"?"selected":""}>
+待处理
+</option>
+
+
+<option ${item.status=="处理中"?"selected":""}>
+处理中
+</option>
+
+
+<option ${item.status=="完成"?"selected":""}>
+完成
+</option>
+
+
+</select>
+
+</td>
+
+
+<td>
+
+<button 
+class="btn delete"
+onclick="removeData(${index})">
+
+删除
+
+</button>
+
+</td>
+
+`;
+
+
+list.appendChild(tr);
+
+
+});
+
+
+
+updateCount();
+
+
+}
+
+
+
+
+// 修改状态
+
+function changeStatus(index,value){
+
+
+data[index].status=value;
+
+
+saveData();
+
+
+}
+
+
+
+
+// 删除
+
+function removeData(index){
+
+
+if(confirm("确定删除这条申请吗？")){
+
+
+data.splice(index,1);
+
+
+saveData();
+
+
+}
+
+
+}
+
+
+
+
+
+// 搜索
+
+function searchData(){
+
+
+let key=
+document.querySelector(".search")
+.value.toLowerCase();
+
+
+
+let rows=
+document.querySelectorAll("#list tr");
+
+
+
+rows.forEach(row=>{
+
+
+if(row.innerText
+.toLowerCase()
+.includes(key)){
+
+
+row.style.display="";
+
+
+}
+
+else{
+
+
+row.style.display="none";
+
+
+}
+
+
+});
+
+
+}
+
+
+
+
+
+
+// 保存
+
+function saveData(){
+
+
+localStorage.setItem(
+
+"idnovaData",
+
+JSON.stringify(data)
+
+);
+
+
+loadData();
+
+
+}
+
+
+
+
+// 数据统计
+
+function updateCount(){
+
+
+document.getElementById("total")
+.innerHTML=data.length;
+
+
+document.getElementById("today")
+.innerHTML=data.length;
+
+
+
+let doing=
+data.filter(
+x=>x.status=="处理中"
+).length;
+
+
+
+document.getElementById("doing")
+.innerHTML=doing;
+
+
+}
+
+
+
+
+// 自动登录
+
+window.onload=function(){
+
+
+if(
+localStorage.getItem("idnovaLogin")
+){
+
+showAdmin();
+
+}
+
+
+};
 
 
 </script>
