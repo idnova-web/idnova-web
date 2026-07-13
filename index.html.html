@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>IDNova MVP V1.0</title>
+<style>
+*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+body{margin:0;background:#f5f6fa;color:#111}
+.container{max-width:1100px;margin:auto;padding:20px}
+.hero{background:#111;color:#fff;padding:45px 25px;border-radius:30px;text-align:center}
+.card{background:#fff;border-radius:24px;padding:25px;margin-top:20px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+input,select,textarea{width:100%;padding:14px;border:1px solid #ddd;border-radius:14px}
+textarea{height:100px;grid-column:1/3}
+button{width:100%;padding:15px;background:#111;color:#fff;border:0;border-radius:15px;margin-top:15px}
+.result{display:none;text-align:center}
+.step{background:#f2f2f2;padding:12px;border-radius:12px;margin-top:10px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}textarea{grid-column:auto}}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="hero">
+<h1>IDNova</h1>
+<p>MVP V1.0 服务申请平台</p>
+<p>申请 · 查询 · 管理 一体化</p>
+</div>
+
+<div class="card" id="apply">
+<h2>提交服务申请</h2>
+
+<div class="grid">
+<input id="name" placeholder="姓名">
+<input id="phone" placeholder="联系电话">
+<input id="email" placeholder="邮箱">
+
+<select id="area">
+<option>请选择地区</option>
+<option>美国</option>
+<option>日本</option>
+<option>香港</option>
+<option>其他</option>
+</select>
+
+<textarea id="note" placeholder="填写您的需求"></textarea>
+</div>
+
+<button onclick="submitApply()">提交申请</button>
+</div>
+
+<div class="card result" id="success">
+<h2>申请成功</h2>
+<p>您的申请编号：</p>
+<h2 id="id"></h2>
+<p>请保存编号，用于查询进度。</p>
+</div>
+
+<div class="card">
+<h2>服务流程</h2>
+<div class="step">1. 提交申请资料</div>
+<div class="step">2. 工作人员确认信息</div>
+<div class="step">3. 服务处理</div>
+<div class="step">4. 完成通知</div>
+</div>
+
+</div>
+
+<script>
+function submitApply(){
+let code="ID"+Date.now().toString().slice(-6);
+localStorage.setItem("idnova_application",JSON.stringify({
+id:code,
+name:name.value,
+phone:phone.value,
+email:email.value,
+area:area.value,
+note:note.value,
+status:"待处理"
+}));
+document.getElementById("apply").style.display="none";
+document.getElementById("success").style.display="block";
+document.getElementById("id").innerText=code;
+}
+</script>
+
+</body>
+</html>
