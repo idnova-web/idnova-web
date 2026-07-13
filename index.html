@@ -7,149 +7,201 @@
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>IDNova V1.2 官方服务平台</title>
+<title>IDNova V1.3 智能服务平台</title>
 
 
 <style>
 
 *{
 box-sizing:border-box;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+font-family:-apple-system,BlinkMacSystemFont,
+"Segoe UI","PingFang SC",sans-serif;
 }
 
 
 body{
+
 margin:0;
-background:#f5f6fa;
+
+background:#f5f5f7;
+
 color:#111;
+
 }
+
 
 
 .container{
-width:92%;
+
+width:90%;
+
 max-width:1200px;
+
 margin:auto;
-}
-
-
-/* 顶部 */
-
-header{
-
-background:#111;
-color:white;
-padding:18px 0;
 
 }
+
+
+
+/* 顶部导航 */
 
 
 .nav{
 
+height:70px;
+
 display:flex;
-justify-content:space-between;
+
 align-items:center;
 
+justify-content:space-between;
+
 }
+
 
 
 .logo{
 
-font-size:26px;
+font-size:32px;
+
 font-weight:800;
 
 }
 
 
-.btn{
 
-background:white;
-color:#111;
-padding:10px 22px;
+.nav button{
+
+border:0;
+
+background:#111;
+
+color:white;
+
+padding:14px 30px;
+
 border-radius:30px;
-text-decoration:none;
+
+font-size:16px;
 
 }
 
 
-/* Hero */
+
+
+/* 首页大屏 */
 
 
 .hero{
 
-margin-top:30px;
+
 background:#111;
+
 color:white;
-padding:70px 30px;
-border-radius:30px;
+
+border-radius:40px;
+
+padding:70px 40px;
+
 text-align:center;
 
+margin-top:20px;
+
+
 }
+
 
 
 .hero h1{
 
-font-size:48px;
-margin:0;
+font-size:70px;
+
+margin:0 0 20px;
 
 }
+
 
 
 .hero p{
 
+font-size:28px;
+
+color:#ccc;
+
+}
+
+
+
+.hero span{
+
+display:block;
+
+margin-top:30px;
+
 font-size:22px;
-opacity:.8;
+
+color:#ddd;
 
 }
 
 
-/* 服务 */
 
-
-.section{
-
-margin-top:40px;
-
-}
+/* 服务区域 */
 
 
 .title{
 
-font-size:32px;
+font-size:42px;
+
+margin-top:70px;
+
 font-weight:800;
-margin-bottom:20px;
 
 }
 
 
 
-.grid{
+.cards{
 
 display:grid;
+
 grid-template-columns:repeat(3,1fr);
-gap:20px;
+
+gap:30px;
+
+margin-top:30px;
 
 }
+
 
 
 .card{
 
 background:white;
-padding:30px;
-border-radius:24px;
+
+border-radius:30px;
+
+padding:40px;
 
 }
 
 
-.card h3{
 
-font-size:22px;
+.card h2{
+
+font-size:30px;
 
 }
+
 
 
 .card p{
 
+font-size:18px;
+
 color:#666;
+
+line-height:1.8;
 
 }
 
@@ -157,100 +209,366 @@ color:#666;
 
 </style>
 
+
 </head>
 
 
 <body>
 
 
-<header>
+<div class="container">
 
-<div class="container nav">
+
+<div class="nav">
+
 
 <div class="logo">
 IDNova
 </div>
 
 
-<a class="btn" href="#apply">
+<button onclick="goApply()">
 立即申请
-</a>
+</button>
 
 
 </div>
 
-</header>
-
-
-<div class="container">
 
 
 <div class="hero">
 
-<h1>IDNova</h1>
+
+<h1>
+IDNova
+</h1>
+
 
 <p>
-V1.2 智能服务申请平台
+V1.3 智能服务申请平台
 </p>
 
-<p>
+
+<span>
 申请 · 查询 · 管理 · 数据一体化
-</p>
+</span>
 
 
 </div>
 
 
-<div class="section">
 
-
-<div class="title">
+<h1 class="title">
 核心服务
-</div>
+</h1>
 
 
-<div class="grid">
+
+<div class="cards">
 
 
 <div class="card">
 
-<h3>
+<h2>
 服务申请
-</h3>
+</h2>
 
 <p>
-快速提交业务需求，智能匹配服务方案。
+快速提交业务需求，
+智能匹配服务方案。
 </p>
 
 </div>
 
 
+
 <div class="card">
 
-<h3>
+<h2>
 进度查询
-</h3>
+</h2>
 
 <p>
-实时查看申请状态与处理进度。
+实时查看申请状态，
+掌握处理进度。
 </p>
 
 </div>
+
 
 
 <div class="card">
 
-<h3>
+<h2>
 后台管理
-</h3>
+</h2>
 
 <p>
-统一管理用户、订单和服务数据。
+统一管理用户、
+订单和服务数据。
 </p>
 
 </div>
 
 
-</div>
+</div><!-- 申请区域 -->
+
+
+<h1 class="title">
+提交服务申请
+</h1>
+
+
+<div class="card">
+
+
+<div style="display:grid;gap:20px;">
+
+
+<input id="name"
+placeholder="姓名"
+style="padding:18px;border-radius:15px;border:1px solid #ddd;font-size:16px;">
+
+
+
+<input id="phone"
+placeholder="联系电话"
+style="padding:18px;border-radius:15px;border:1px solid #ddd;font-size:16px;">
+
+
+
+<input id="email"
+placeholder="邮箱"
+style="padding:18px;border-radius:15px;border:1px solid #ddd;font-size:16px;">
+
+
+
+<select id="area"
+style="padding:18px;border-radius:15px;border:1px solid #ddd;font-size:16px;">
+
+
+<option>
+请选择地区
+</option>
+
+<option>
+中国大陆
+</option>
+
+
+<option>
+日本
+</option>
+
+
+<option>
+其他地区
+</option>
+
+
+</select>
+
+
+
+<textarea id="desc"
+placeholder="请输入您的需求"
+style="height:130px;padding:18px;border-radius:15px;border:1px solid #ddd;font-size:16px;">
+</textarea>
+
+
+
+<button onclick="submitApply()"
+style="
+padding:18px;
+background:#111;
+color:white;
+border:none;
+border-radius:30px;
+font-size:18px;
+">
+
+提交申请
+
+</button>
+
 
 </div>
+
+
+</div>
+
+
+
+
+
+<!-- 数据展示 -->
+
+
+<h1 class="title">
+IDNova 服务流程
+</h1>
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<h2>
+01 提交
+</h2>
+
+<p>
+填写业务需求，提交服务申请。
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>
+02 审核
+</h2>
+
+<p>
+后台管理员查看并处理申请。
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>
+03 完成
+</h2>
+
+<p>
+完成服务交付并记录数据。
+</p>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+<script>
+
+
+function goApply(){
+
+window.scrollTo({
+
+top:document.body.scrollHeight,
+
+behavior:"smooth"
+
+})
+
+}
+
+
+
+
+
+function submitApply(){
+
+
+
+let item={
+
+
+id:Date.now(),
+
+
+name:document.getElementById("name").value,
+
+
+phone:document.getElementById("phone").value,
+
+
+email:document.getElementById("email").value,
+
+
+area:document.getElementById("area").value,
+
+
+desc:document.getElementById("desc").value,
+
+
+status:"处理中"
+
+
+};
+
+
+
+
+if(!item.name){
+
+alert("请输入姓名");
+
+return;
+
+}
+
+
+
+
+let list=JSON.parse(
+
+localStorage.getItem("idnovaData")
+
+||"[]"
+
+);
+
+
+
+list.push(item);
+
+
+
+localStorage.setItem(
+
+"idnovaData",
+
+JSON.stringify(list)
+
+);
+
+
+
+alert("申请提交成功！");
+
+
+
+document.querySelectorAll("input,textarea")
+
+.forEach(e=>e.value="");
+
+
+
+}
+
+
+</script>
+
+
+
+</body>
+
+
+</html>
