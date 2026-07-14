@@ -7,15 +7,19 @@
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>IDNova V1.3 智能服务平台</title>
+<title>IDNova V2.0 管理后台</title>
 
 
 <style>
 
 *{
 box-sizing:border-box;
-font-family:-apple-system,BlinkMacSystemFont,
-"Segoe UI","PingFang SC",sans-serif;
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+"Microsoft YaHei",
+sans-serif;
 }
 
 
@@ -31,56 +35,62 @@ color:#111;
 
 
 
-.container{
+/* 登录 */
 
-width:90%;
+#loginPage{
 
-max-width:1200px;
-
-margin:auto;
-
-}
-
-
-
-/* 顶部导航 */
-
-
-.nav{
-
-height:70px;
+height:100vh;
 
 display:flex;
 
 align-items:center;
 
-justify-content:space-between;
+justify-content:center;
 
 }
 
 
 
-.logo{
+.loginBox{
 
-font-size:32px;
+background:white;
 
-font-weight:800;
+width:380px;
 
-}
-
-
-
-.nav button{
-
-border:0;
-
-background:#111;
-
-color:white;
-
-padding:14px 30px;
+padding:40px;
 
 border-radius:30px;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.15);
+
+text-align:center;
+
+}
+
+
+
+.loginBox h1{
+
+font-size:40px;
+
+margin-bottom:10px;
+
+}
+
+
+
+input,select,textarea{
+
+width:100%;
+
+padding:15px;
+
+margin:8px 0;
+
+border-radius:15px;
+
+border:1px solid #ddd;
 
 font-size:16px;
 
@@ -88,74 +98,72 @@ font-size:16px;
 
 
 
-
-/* 首页大屏 */
-
-
-.hero{
-
+button{
 
 background:#111;
 
 color:white;
 
-border-radius:40px;
+border:0;
 
-padding:70px 40px;
+padding:12px 22px;
 
-text-align:center;
+border-radius:20px;
 
-margin-top:20px;
-
-
-}
-
-
-
-.hero h1{
-
-font-size:70px;
-
-margin:0 0 20px;
+cursor:pointer;
 
 }
 
 
 
-.hero p{
+button:hover{
 
-font-size:28px;
-
-color:#ccc;
+opacity:.8;
 
 }
 
 
 
-.hero span{
 
-display:block;
 
-margin-top:30px;
+/* 后台 */
 
-font-size:22px;
 
-color:#ddd;
+#adminPage{
+
+display:none;
 
 }
 
 
 
-/* 服务区域 */
+.header{
+
+background:#111;
+
+color:white;
+
+padding:30px;
+
+border-radius:0 0 35px 35px;
+
+}
 
 
-.title{
 
-font-size:42px;
+.header h1{
 
-margin-top:70px;
+margin:0;
 
-font-weight:800;
+font-size:40px;
+
+}
+
+
+
+.container{
+
+padding:30px;
 
 }
 
@@ -165,11 +173,10 @@ font-weight:800;
 
 display:grid;
 
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:
+repeat(4,1fr);
 
-gap:30px;
-
-margin-top:30px;
+gap:20px;
 
 }
 
@@ -179,29 +186,69 @@ margin-top:30px;
 
 background:white;
 
-border-radius:30px;
+padding:30px;
 
-padding:40px;
-
-}
-
-
-
-.card h2{
-
-font-size:30px;
+border-radius:25px;
 
 }
 
 
 
-.card p{
+.number{
 
-font-size:18px;
+font-size:42px;
+
+font-weight:800;
+
+}
+
+
+
+.title{
 
 color:#666;
 
-line-height:1.8;
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+th{
+
+background:#111;
+
+color:white;
+
+padding:12px;
+
+}
+
+
+td{
+
+padding:12px;
+
+border-bottom:1px solid #ddd;
+
+text-align:center;
+
+}
+
+
+
+@media(max-width:800px){
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
 
 }
 
@@ -213,70 +260,103 @@ line-height:1.8;
 </head>
 
 
+
 <body>
+<!-- 登录页面 -->
+
+<div id="loginPage">
+
+<div class="loginBox">
+
+<h1>IDNova</h1>
+
+<p>
+V2.0 管理员登录
+</p >
 
 
-<div class="container">
+<input 
+id="user"
+placeholder="管理员账号">
 
 
-<div class="nav">
+<input 
+id="pass"
+type="password"
+placeholder="管理员密码">
 
 
-<div class="logo">
-IDNova
-</div>
+<button onclick="login()">
 
+进入后台
 
-<button onclick="goApply()">
-立即申请
 </button>
 
 
 </div>
 
+</div>
 
 
-<div class="hero">
+
+
+
+<!-- 后台页面 -->
+
+
+<div id="adminPage">
+
+
+
+<div class="header">
+
+
+<button 
+style="float:right;background:#e74c3c"
+onclick="logout()">
+
+退出
+
+</button>
 
 
 <h1>
-IDNova
+IDNova 管理中心
 </h1>
 
 
 <p>
-V1.3 智能服务申请平台
-</p>
-
-
-<span>
-申请 · 查询 · 管理 · 数据一体化
-</span>
+智能服务申请管理系统 V2.0
+</p >
 
 
 </div>
 
 
 
-<h1 class="title">
-核心服务
-</h1>
 
+
+
+<div class="container">
+
+
+
+<!-- 数据统计 -->
 
 
 <div class="cards">
 
 
+
 <div class="card">
 
-<h2>
-服务申请
-</h2>
+<div class="number" id="total">
+0
+</div>
 
-<p>
-快速提交业务需求，
-智能匹配服务方案。
-</p>
+<div class="title">
+全部申请
+</div>
 
 </div>
 
@@ -284,14 +364,13 @@ V1.3 智能服务申请平台
 
 <div class="card">
 
-<h2>
-进度查询
-</h2>
+<div class="number" id="pending">
+0
+</div>
 
-<p>
-实时查看申请状态，
-掌握处理进度。
-</p>
+<div class="title">
+待审核
+</div>
 
 </div>
 
@@ -299,70 +378,133 @@ V1.3 智能服务申请平台
 
 <div class="card">
 
-<h2>
-后台管理
-</h2>
+<div class="number" id="processing">
+0
+</div>
 
-<p>
-统一管理用户、
-订单和服务数据。
-</p>
+<div class="title">
+处理中
+</div>
 
 </div>
 
 
-</div><!-- 申请区域 -->
 
 
-<h1 class="title">
-提交服务申请
-</h1>
+<div class="card">
+
+<div class="number" id="complete">
+0
+</div>
+
+<div class="title">
+已完成
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- 筛选区域 -->
 
 
 <div class="card">
 
 
-<div style="display:grid;gap:20px;">
-
-
-<input id="name"
-placeholder="姓名"
-style="padding:18px;border-radius:15px;border:1px solid #ddd;font-size:16px;">
+<h2>
+申请管理
+</h2>
 
 
 
-<input id="phone"
-placeholder="联系电话"
-style="padding:18px;border-radius:15px;border:1px solid #ddd;font-size:16px;">
+<input
+
+id="search"
+
+placeholder="搜索姓名/电话"
+
+oninput="render()"
+
+>
 
 
 
-<input id="email"
-placeholder="邮箱"
-style="padding:18px;border-radius:15px;border:1px solid #ddd;font-size:16px;">
+
+<select id="countryFilter"
+onchange="render()">
 
 
-
-<select id="area"
-style="padding:18px;border-radius:15px;border:1px solid #ddd;font-size:16px;">
-
-
-<option>
-请选择地区
+<option value="">
+全部国家/地区
 </option>
 
 <option>
-中国大陆
+中国
 </option>
-
 
 <option>
 日本
 </option>
 
+<option>
+韩国
+</option>
 
 <option>
-其他地区
+美国
+</option>
+
+<option>
+加拿大
+</option>
+
+<option>
+英国
+</option>
+
+<option>
+法国
+</option>
+
+<option>
+德国
+</option>
+
+<option>
+澳大利亚
+</option>
+
+<option>
+新加坡
+</option>
+
+<option>
+马来西亚
+</option>
+
+<option>
+泰国
+</option>
+
+<option>
+印度
+</option>
+
+<option>
+阿联酋
+</option>
+
+<option>
+其他
 </option>
 
 
@@ -370,26 +512,103 @@ style="padding:18px;border-radius:15px;border:1px solid #ddd;font-size:16px;">
 
 
 
-<textarea id="desc"
-placeholder="请输入您的需求"
-style="height:130px;padding:18px;border-radius:15px;border:1px solid #ddd;font-size:16px;">
-</textarea>
+
+
+<select id="serviceFilter"
+onchange="render()">
 
 
 
-<button onclick="submitApply()"
-style="
-padding:18px;
-background:#111;
-color:white;
-border:none;
-border-radius:30px;
-font-size:18px;
-">
+<option value="">
+全部服务
+</option>
 
-提交申请
 
-</button>
+<option>
+网站建设
+</option>
+
+
+<option>
+APP开发
+</option>
+
+
+<option>
+软件系统
+</option>
+
+
+<option>
+AI应用
+</option>
+
+
+<option>
+企业数字化
+</option>
+
+
+<option>
+品牌设计
+</option>
+
+
+<option>
+其他
+</option>
+
+
+</select>
+
+
+
+<table style="margin-top:30px;">
+
+<thead>
+
+<tr>
+
+<th>
+客户
+</th>
+
+
+<th>
+国家
+</th>
+
+
+<th>
+服务
+</th>
+
+
+<th>
+状态
+</th>
+
+
+<th>
+操作
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="list">
+
+</tbody>
+
+
+
+</table>
+
 
 
 </div>
@@ -398,84 +617,74 @@ font-size:18px;
 </div>
 
 
-
-
-
-<!-- 数据展示 -->
-
-
-<h1 class="title">
-IDNova 服务流程
-</h1>
-
-
-<div class="cards">
-
-
-<div class="card">
-
-<h2>
-01 提交
-</h2>
-
-<p>
-填写业务需求，提交服务申请。
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>
-02 审核
-</h2>
-
-<p>
-后台管理员查看并处理申请。
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>
-03 完成
-</h2>
-
-<p>
-完成服务交付并记录数据。
-</p>
-
-</div>
-
-
-
 </div>
 
 
 
 
-
-</div>
 
 
 
 <script>
 
 
-function goApply(){
+// =======================
+// IDNova V2.0 系统逻辑
+// =======================
 
-window.scrollTo({
 
-top:document.body.scrollHeight,
 
-behavior:"smooth"
+const ADMIN_ACCOUNT="admin";
 
-})
+const ADMIN_PASSWORD="123456";
+
+
+
+
+
+
+// 登录
+
+
+function login(){
+
+
+
+let u=
+document.getElementById("user").value;
+
+
+
+let p=
+document.getElementById("pass").value;
+
+
+
+if(
+u===ADMIN_ACCOUNT &&
+p===ADMIN_PASSWORD
+){
+
+
+localStorage.setItem(
+"idnovaAdmin",
+"true"
+);
+
+
+openAdmin();
+
+
+}
+
+else{
+
+
+alert("账号或密码错误");
+
+
+}
+
 
 }
 
@@ -483,92 +692,461 @@ behavior:"smooth"
 
 
 
-function submitApply(){
 
 
 
-let item={
+// 打开后台
 
 
-id:Date.now(),
+function openAdmin(){
 
 
-name:document.getElementById("name").value,
+document.getElementById("loginPage")
+.style.display="none";
 
 
-phone:document.getElementById("phone").value,
+document.getElementById("adminPage")
+.style.display="block";
 
 
-email:document.getElementById("email").value,
+render();
 
-
-area:document.getElementById("area").value,
-
-
-desc:document.getElementById("desc").value,
-
-
-status:"处理中"
-
-
-};
-
-
-
-
-if(!item.name){
-
-alert("请输入姓名");
-
-return;
 
 }
 
 
 
 
-let list=JSON.parse(
 
-localStorage.getItem("idnovaData")
+
+
+// 退出
+
+
+function logout(){
+
+
+localStorage.removeItem(
+"idnovaAdmin"
+);
+
+
+location.reload();
+
+
+}
+
+
+
+
+
+
+
+// 获取申请数据
+
+
+function getData(){
+
+
+return JSON.parse(
+
+localStorage.getItem(
+"idnovaData"
+)
 
 ||"[]"
 
 );
 
 
+}
 
-list.push(item);
 
+
+
+
+
+
+
+// 保存
+
+
+function saveData(data){
 
 
 localStorage.setItem(
 
 "idnovaData",
 
-JSON.stringify(list)
+JSON.stringify(data)
 
 );
 
 
-
-alert("申请提交成功！");
-
+}
 
 
-document.querySelectorAll("input,textarea")
 
-.forEach(e=>e.value="");
+
+
+
+
+
+// 渲染列表
+
+
+function render(){
+
+
+let data=getData();
+
+
+
+let keyword=
+
+document.getElementById("search")
+.value
+.toLowerCase();
+
+
+
+
+let country=
+
+document.getElementById("countryFilter")
+.value;
+
+
+
+
+let service=
+
+document.getElementById("serviceFilter")
+.value;
+
+
+
+
+
+let html="";
+
+
+
+
+data
+
+.filter(item=>{
+
+
+return (
+
+(!keyword ||
+
+item.name.includes(keyword)
+
+||
+item.phone.includes(keyword)
+
+)
+
+&&
+
+(!country ||
+
+item.country===country
+
+)
+
+&&
+
+(!service ||
+
+item.service===service
+
+)
+
+
+);
+
+
+})
+
+.forEach((item,index)=>{
+
+
+
+html+=`
+
+
+<tr>
+
+
+<td>
+
+${item.name || "-"}
+
+<br>
+
+${item.phone || ""}
+
+</td>
+
+
+
+<td>
+
+${item.country || "-"}
+
+</td>
+
+
+
+<td>
+
+${item.service || "-"}
+
+</td>
+
+
+
+<td>
+
+${item.status || "待审核"}
+
+</td>
+
+
+
+<td>
+
+
+
+<button onclick="changeStatus(${index})">
+
+修改
+
+</button>
+
+
+<button onclick="deleteItem(${index})">
+
+删除
+
+</button>
+
+
+</td>
+
+
+
+</tr>
+
+
+`;
+
+
+
+});
+
+
+
+
+document.getElementById("list")
+.innerHTML=html;
+
+
+
+
+updateCount();
 
 
 
 }
 
 
+
+
+
+
+
+
+
+// 修改状态
+
+
+function changeStatus(index){
+
+
+let data=getData();
+
+
+
+let status=data[index].status;
+
+
+
+if(status==="待审核"){
+
+
+data[index].status="处理中";
+
+
+}
+
+else if(status==="处理中"){
+
+
+data[index].status="已完成";
+
+
+}
+
+else{
+
+
+data[index].status="待审核";
+
+
+}
+
+
+
+saveData(data);
+
+
+render();
+
+
+}
+
+
+
+
+
+
+
+
+// 删除
+
+
+function deleteItem(index){
+
+
+if(confirm("确认删除？")){
+
+
+let data=getData();
+
+
+
+data.splice(index,1);
+
+
+
+saveData(data);
+
+
+
+render();
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+// 数据统计
+
+
+function updateCount(){
+
+
+
+let data=getData();
+
+
+
+document.getElementById("total")
+.innerHTML=data.length;
+
+
+
+
+document.getElementById("pending")
+.innerHTML=
+
+data.filter(
+x=>x.status==="待审核"
+).length;
+
+
+
+
+document.getElementById("processing")
+.innerHTML=
+
+data.filter(
+x=>x.status==="处理中"
+).length;
+
+
+
+
+document.getElementById("complete")
+.innerHTML=
+
+data.filter(
+x=>x.status==="已完成"
+).length;
+
+
+
+}
+
+
+
+
+
+
+
+// 自动登录
+
+
+window.onload=function(){
+
+
+
+if(
+
+localStorage.getItem(
+"idnovaAdmin"
+
+)
+
+){
+
+
+openAdmin();
+
+
+}
+
+
+
+};
+
+
+
 </script>
 
 
-
 </body>
-
 
 </html>
