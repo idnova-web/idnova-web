@@ -1,672 +1,394 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
-
-
 <head>
-
-
-<meta charset="UTF-8">
-
-
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-
-<title>
-IDNova V1.3 管理中心
-</title>
-
-
-
-<style>
-
-
-*{
-
-box-sizing:border-box;
-
-font-family:-apple-system,BlinkMacSystemFont,
-"Segoe UI","PingFang SC",sans-serif;
-
-}
-
-
-
-body{
-
-margin:0;
-
-background:#f5f5f7;
-
-color:#111;
-
-}
-
-
-
-.container{
-
-width:90%;
-
-max-width:1100px;
-
-margin:auto;
-
-}
-
-
-
-
-
-.hero{
-
-
-margin-top:30px;
-
-background:#111;
-
-color:white;
-
-border-radius:40px;
-
-padding:50px;
-
-
-}
-
-
-
-.hero h1{
-
-font-size:45px;
-
-margin:0;
-
-}
-
-
-
-.hero p{
-
-font-size:22px;
-
-color:#ccc;
-
-}
-
-
-
-
-
-.cards{
-
-
-display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
-gap:20px;
-
-margin-top:30px;
-
-
-}
-
-
-
-.box{
-
-
-background:white;
-
-padding:30px;
-
-border-radius:25px;
-
-
-}
-
-
-
-.num{
-
-font-size:45px;
-
-font-weight:800;
-
-}
-
-
-
-.label{
-
-font-size:20px;
-
-color:#666;
-
-}
-
-
-
-
-
-.panel{
-
-
-background:white;
-
-margin-top:30px;
-
-border-radius:30px;
-
-padding:30px;
-
-
-}
-
-
-
-
-
-input{
-
-
-width:100%;
-
-padding:16px;
-
-border-radius:15px;
-
-border:1px solid #ddd;
-
-font-size:16px;
-
-
-}
-
-
-
-
-
-table{
-
-
-width:100%;
-
-border-collapse:collapse;
-
-margin-top:20px;
-
-
-}
-
-
-
-th,td{
-
-
-padding:15px;
-
-border-bottom:1px solid #eee;
-
-text-align:center;
-
-
-}
-
-
-
-
-button{
-
-
-border:none;
-
-background:#111;
-
-color:white;
-
-padding:10px 18px;
-
-border-radius:20px;
-
-
-}
-
-
-
-</style>
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IDNova Admin V1.3</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f5f5f7;
+      color: #111;
+    }
+
+    /* 登录 */
+    .login {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      padding: 40px;
+      border-radius: 30px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .15);
+      text-align: center;
+    }
+
+    .login-box h1 {
+      font-size: 42px;
+      margin: 0 0 10px;
+    }
+
+    .login-box p {
+      color: #777;
+      margin-bottom: 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 15px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #111;
+    }
+
+    button {
+      border: none;
+      background: #111;
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      opacity: .8;
+    }
+
+    /* 后台 */
+    #dashboard {
+      display: none;
+    }
+
+    .header {
+      background: #111;
+      color: #fff;
+      padding: 30px;
+      border-radius: 0 0 35px 35px;
+    }
+
+    .header h1 {
+      font-size: 38px;
+      margin: 0;
+    }
+
+    .header p {
+      color: #ccc;
+      margin-bottom: 0;
+    }
+
+    .container {
+      padding: 25px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 25px;
+      padding: 30px;
+      margin-bottom: 25px;
+    }
+
+    .card h2 {
+      font-size: 40px;
+      margin: 0;
+    }
+
+    .card-title {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    /* 表格 */
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+
+    th {
+      background: #111;
+      color: #fff;
+      padding: 15px;
+    }
+
+    td {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 15px;
+      border-radius: 20px;
+      background: #eee;
+    }
+
+    .search {
+      margin-bottom: 20px;
+    }
+
+    .small-btn {
+      padding: 8px 15px;
+      font-size: 14px;
+      margin: 3px;
+    }
+
+    .logout {
+      background: #e74c3c;
+      float: right;
+    }
+
+    .empty {
+      color: #888;
+      padding: 30px;
+    }
+
+    @media (max-width: 700px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .header h1 {
+        font-size: 30px;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .card h2 {
+        font-size: 34px;
+      }
+    }
+  </style>
 </head>
 
-
 <body>
-
-
-
-<div class="container">
-
-
-
-<div class="hero">
-
-
-<h1>
-IDNova 管理中心
-</h1>
-
-
-<p>
-V1.3 服务申请管理系统
-</p>
-
-
-</div>
-
-
-
-<div class="cards">
-
-
-
-<div class="box">
-
-<div class="num" id="total">
-0
-</div>
-
-<div class="label">
-总申请
-</div>
-
-</div>
-
-
-
-<div class="box">
-
-<div class="num" id="doing">
-0
-</div>
-
-<div class="label">
-处理中
-</div>
-
-</div>
-
-
-
-<div class="box">
-
-<div class="num" id="done">
-0
-</div>
-
-<div class="label">
-已完成
-</div>
-
-</div>
-
-
-
-</div><!-- 申请列表 -->
-
-
-<div class="panel">
-
-
-<h2>
-申请列表
-</h2>
-
-
-
-<input 
-id="search"
-placeholder="搜索客户姓名 / 电话"
-oninput="render()"
->
-
-
-
-<table>
-
-
-<thead>
-
-<tr>
-
-<th>
-编号
-</th>
-
-
-<th>
-客户
-</th>
-
-
-<th>
-地区
-</th>
-
-
-<th>
-状态
-</th>
-
-
-<th>
-操作
-</th>
-
-
-</tr>
-
-</thead>
-
-
-
-<tbody id="list">
-
-
-</tbody>
-
-
-
-</table>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<script>
-
-
-let data=[];
-
-
-
-
-function loadData(){
-
-
-data=JSON.parse(
-
-localStorage.getItem("idnovaData")
-
-||"[]"
-
-);
-
-
-}
-
-
-
-function updateCount(){
-
-
-
-document.getElementById("total").innerHTML=data.length;
-
-
-
-document.getElementById("doing").innerHTML=
-
-
-data.filter(
-
-x=>x.status=="处理中"
-
-).length;
-
-
-
-
-document.getElementById("done").innerHTML=
-
-
-data.filter(
-
-x=>x.status=="已完成"
-
-).length;
-
-
-
-}
-
-
-
-
-function render(){
-
-
-
-loadData();
-
-
-
-let keyword=document.getElementById("search").value;
-
-
-
-let html="";
-
-
-
-data
-
-.filter(x=>
-
-
-x.name.includes(keyword)
-
-||
-x.phone.includes(keyword)
-
-
-)
-
-
-.forEach((x,i)=>{
-
-
-html+=`
-
-
-<tr>
-
-
-<td>
-${i+1}
-</td>
-
-
-
-<td>
-
-${x.name}
-
-<br>
-
-${x.phone}
-
-</td>
-
-
-
-
-<td>
-
-${x.area}
-
-</td>
-
-
-
-
-<td>
-
-${x.status}
-
-</td>
-
-
-
-
-<td>
-
-
-
-<button onclick="changeStatus(${x.id})">
-
-修改
-
-</button>
-
-
-
-<button onclick="removeItem(${x.id})">
-
-删除
-
-</button>
-
-
-
-</td>
-
-
-
-</tr>
-
-
-`;
-
-
-
-});
-
-
-
-
-document.getElementById("list").innerHTML=html;
-
-
-
-updateCount();
-
-
-}
-
-
-
-
-
-function changeStatus(id){
-
-
-
-let item=data.find(
-
-x=>x.id==id
-
-);
-
-
-
-if(item.status=="处理中"){
-
-
-item.status="已完成";
-
-
-}else{
-
-
-item.status="处理中";
-
-
-}
-
-
-
-localStorage.setItem(
-
-"idnovaData",
-
-JSON.stringify(data)
-
-);
-
-
-
-render();
-
-
-}
-
-
-
-
-function removeItem(id){
-
-
-
-if(confirm("确定删除吗？")){
-
-
-data=data.filter(
-
-x=>x.id!=id
-
-);
-
-
-
-localStorage.setItem(
-
-"idnovaData",
-
-JSON.stringify(data)
-
-);
-
-
-
-render();
-
-
-
-}
-
-
-}
-
-
-
-
-
-render();
-
-
-
-</script>
-
-
-
-
+  <!-- 登录 -->
+  <div class="login" id="login">
+    <div class="login-box">
+      <h1>IDNova</h1>
+      <p>管理员登录</p >
+
+      <input id="username" placeholder="管理员账号">
+      <input id="password" type="password" placeholder="管理员密码">
+
+      <button onclick="login()">登录后台</button>
+    </div>
+  </div>
+
+  <!-- 后台 -->
+  <div id="dashboard">
+    <div class="header">
+      <button class="logout" onclick="logout()">退出</button>
+      <h1>IDNova 管理中心</h1>
+      <p>服务申请管理系统 V1.3</p >
+    </div>
+
+    <div class="container">
+      <div class="cards">
+        <div class="card">
+          <h2 id="total">0</h2>
+          <div class="card-title">总申请</div>
+        </div>
+
+        <div class="card">
+          <h2 id="doing">0</h2>
+          <div class="card-title">处理中</div>
+        </div>
+
+        <div class="card">
+          <h2 id="finish">0</h2>
+          <div class="card-title">已完成</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>申请列表</h2>
+
+        <input class="search" id="search" placeholder="搜索客户 / 手机号" oninput="renderData()">
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>客户</th>
+                <th>地区</th>
+                <th>需求</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+
+            <tbody id="dataList"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================
+    // IDNova V1.3 后台逻辑
+    // =========================
+
+    // 管理员账号
+    const ADMIN_USER = "admin";
+    const ADMIN_PASS = "123456";
+
+    // 登录
+    function login() {
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value;
+
+      if (user === ADMIN_USER && pass === ADMIN_PASS) {
+        localStorage.setItem("idnovaLogin", "true");
+        openAdmin();
+      } else {
+        alert("账号或密码错误");
+      }
+    }
+
+    // 打开后台
+    function openAdmin() {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+      renderData();
+    }
+
+    // 退出登录
+    function logout() {
+      localStorage.removeItem("idnovaLogin");
+      location.reload();
+    }
+
+    // 获取数据
+    function getData() {
+      return JSON.parse(localStorage.getItem("idnovaData") || "[]");
+    }
+
+    // 保存数据
+    function saveData(data) {
+      localStorage.setItem("idnovaData", JSON.stringify(data));
+    }
+
+    // 显示数据
+    function renderData() {
+      const data = getData();
+      const list = document.getElementById("dataList");
+      const search = document.getElementById("search");
+
+      if (!list || !search) return;
+
+      const keyword = search.value.trim().toLowerCase();
+      const filteredData = data
+        .map((item, index) => ({ item, index }))
+        .filter(({ item }) => {
+          const name = String(item.name || "").toLowerCase();
+          const phone = String(item.phone || "");
+          return name.includes(keyword) || phone.includes(keyword);
+        });
+
+      if (filteredData.length === 0) {
+        list.innerHTML = '<tr><td class="empty" colspan="5">暂无申请数据</td></tr>';
+        updateCount();
+        return;
+      }
+
+      list.innerHTML = filteredData.map(({ item, index }) => `
+        <tr>
+          <td>
+            ${item.name || "-"}
+            <br>
+            ${item.phone || "-"}
+          </td>
+          <td>${item.area || "-"}</td>
+          <td>${item.desc || "-"}</td>
+          <td><span class="status">${item.status || "处理中"}</span></td>
+          <td>
+            <button class="small-btn" onclick="changeStatus(${index})">修改</button>
+            <button class="small-btn" onclick="deleteItem(${index})">删除</button>
+          </td>
+        </tr>
+      `).join("");
+
+      updateCount();
+    }
+
+    // 修改状态
+    function changeStatus(index) {
+      const data = getData();
+
+      if (!data[index]) return;
+
+      if (data[index].status === "处理中") {
+        data[index].status = "已完成";
+      } else {
+        data[index].status = "处理中";
+      }
+
+      saveData(data);
+      renderData();
+    }
+
+    // 删除数据
+    function deleteItem(index) {
+      if (confirm("确定删除该申请吗？")) {
+        const data = getData();
+
+        if (!data[index]) return;
+
+        data.splice(index, 1);
+        saveData(data);
+        renderData();
+      }
+    }
+
+    // 统计数据
+    function updateCount() {
+      const data = getData();
+
+      document.getElementById("total").innerHTML = data.length;
+      document.getElementById("doing").innerHTML = data.filter(x => x.status === "处理中").length;
+      document.getElementById("finish").innerHTML = data.filter(x => x.status === "已完成").length;
+    }
+
+    // 自动登录
+    window.onload = function () {
+      if (localStorage.getItem("idnovaLogin")) {
+        openAdmin();
+      }
+    };
+  </script>
 </body>
-
 </html>
