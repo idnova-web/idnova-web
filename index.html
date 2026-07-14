@@ -42,7 +42,7 @@ background:#111;
 
 color:white;
 
-padding:30px 8%;
+padding:25px 8%;
 
 display:flex;
 
@@ -62,6 +62,7 @@ font-weight:800;
 }
 
 
+
 .header button{
 
 background:white;
@@ -74,15 +75,17 @@ padding:12px 25px;
 
 border-radius:30px;
 
+cursor:pointer;
+
 }
 
 
 
-/* 首页 */
+/* 主视觉 */
 
 .hero{
 
-padding:90px 8%;
+padding:80px 8%;
 
 text-align:center;
 
@@ -92,11 +95,12 @@ text-align:center;
 
 .hero h1{
 
-font-size:60px;
+font-size:56px;
 
-margin:0;
+margin-bottom:20px;
 
 }
+
 
 
 .hero p{
@@ -106,6 +110,7 @@ font-size:22px;
 color:#666;
 
 }
+
 
 
 
@@ -120,12 +125,13 @@ repeat(4,1fr);
 
 gap:20px;
 
-padding:40px 8%;
+padding:30px 8%;
 
 }
 
 
-.box{
+
+.serviceBox{
 
 background:white;
 
@@ -135,11 +141,7 @@ border-radius:25px;
 
 text-align:center;
 
-box-shadow:
-0 10px 30px rgba(0,0,0,.08);
-
 }
-
 
 
 
@@ -147,11 +149,11 @@ box-shadow:
 
 .formBox{
 
-background:white;
-
 max-width:600px;
 
-margin:50px auto;
+margin:60px auto;
+
+background:white;
 
 padding:40px;
 
@@ -193,31 +195,39 @@ height:120px;
 
 
 
-.submit{
+.notice{
+
+background:#f5f5f5;
+
+padding:15px;
+
+border-radius:15px;
+
+font-size:14px;
+
+color:#666;
+
+}
+
+
+
+.submitBtn{
+
+width:100%;
 
 background:#111;
 
 color:white;
 
+padding:16px;
+
 border:0;
-
-padding:15px;
-
-width:100%;
 
 border-radius:30px;
 
 font-size:18px;
 
 cursor:pointer;
-
-}
-
-
-
-.submit:hover{
-
-opacity:.8;
 
 }
 
@@ -237,17 +247,16 @@ color:#777;
 
 @media(max-width:800px){
 
+.services{
 
-.hero h1{
-
-font-size:40px;
+grid-template-columns:1fr;
 
 }
 
 
-.services{
+.hero h1{
 
-grid-template-columns:1fr;
+font-size:38px;
 
 }
 
@@ -261,12 +270,10 @@ grid-template-columns:1fr;
 </head>
 
 
-
 <body>
 
 
-
-<header class="header">
+<div class="header">
 
 
 <div class="logo">
@@ -276,34 +283,26 @@ IDNova
 </div>
 
 
-<button onclick="scrollForm()">
+<button onclick="goApply()">
 
 立即申请
 
 </button>
 
 
-</header>
-
-
-
-
-
+</div>
+<!-- 首页展示 -->
 
 <section class="hero">
 
 
 <h1>
-
-智能数字服务平台
-
+全球数字服务解决方案
 </h1>
 
 
 <p>
-
-帮助企业连接全球技术与数字化解决方案
-
+IDNova 为客户提供账号注册、数字化服务及技术解决方案
 </p>
 
 
@@ -313,26 +312,41 @@ IDNova
 
 
 
+<!-- 服务展示 -->
 
 
 <section class="services">
 
 
-<div class="box">
+<div class="serviceBox">
 
 <h2>
-网站建设
+Apple账号服务
 </h2>
 
 <p>
-企业官网、电商平台
+安全创建与管理服务
 </p>
 
 </div>
 
 
 
-<div class="box">
+<div class="serviceBox">
+
+<h2>
+网站建设
+</h2>
+
+<p>
+企业官网及平台开发
+</p>
+
+</div>
+
+
+
+<div class="serviceBox">
 
 <h2>
 APP开发
@@ -346,28 +360,14 @@ APP开发
 
 
 
-<div class="box">
+<div class="serviceBox">
 
 <h2>
 AI应用
 </h2>
 
 <p>
-人工智能解决方案
-</p>
-
-</div>
-
-
-
-<div class="box">
-
-<h2>
-数字化系统
-</h2>
-
-<p>
-企业管理系统
+智能化解决方案
 </p>
 
 </div>
@@ -381,15 +381,37 @@ AI应用
 
 
 
+<!-- 客户申请表 -->
+
 
 <div class="formBox" id="apply">
 
 
 <h2>
-
 提交服务申请
-
 </h2>
+
+
+
+<p class="notice">
+
+提示：账号相关密码由系统随机生成，
+完成后客户可以自行修改密码。
+请勿在此页面填写任何密码信息。
+
+</p>
+
+
+
+
+
+<input
+
+id="orderNo"
+
+placeholder="请输入咸鱼订单编号">
+
+
 
 
 
@@ -397,14 +419,17 @@ AI应用
 
 id="name"
 
-placeholder="姓名">
+placeholder="请输入客户姓名">
+
+
+
 
 
 <input
 
 id="phone"
 
-placeholder="联系电话">
+placeholder="请输入联系电话">
 
 
 
@@ -501,6 +526,18 @@ placeholder="联系电话">
 
 
 
+
+<input
+
+id="email"
+
+placeholder="请输入注册邮箱">
+
+
+
+
+
+
 <select id="service">
 
 
@@ -508,6 +545,11 @@ placeholder="联系电话">
 
 请选择服务类型
 
+</option>
+
+
+<option>
+Apple账号注册服务
 </option>
 
 
@@ -537,11 +579,6 @@ AI应用
 
 
 <option>
-品牌设计
-</option>
-
-
-<option>
 其他
 </option>
 
@@ -553,12 +590,11 @@ AI应用
 
 
 
-
 <textarea
 
 id="desc"
 
-placeholder="请输入您的需求">
+placeholder="请输入其他需求说明">
 
 </textarea>
 
@@ -569,9 +605,9 @@ placeholder="请输入您的需求">
 
 <button
 
-class="submit"
+class="submitBtn"
 
-onclick="submitForm()">
+onclick="submitOrder()">
 
 提交申请
 
@@ -580,13 +616,6 @@ onclick="submitForm()">
 
 
 </div>
-
-
-
-
-
-
-
 <footer class="footer">
 
 © 2026 IDNova Digital
@@ -597,17 +626,20 @@ onclick="submitForm()">
 
 
 
-
-
-
 <script>
 
 
-function scrollForm(){
+// 滚动到申请区域
+
+function goApply(){
 
 document
 .getElementById("apply")
-.scrollIntoView();
+.scrollIntoView({
+
+behavior:"smooth"
+
+});
 
 }
 
@@ -616,17 +648,17 @@ document
 
 
 
-function submitForm(){
+
+// 提交订单
+
+
+function submitOrder(){
 
 
 
-let data=
+let data = JSON.parse(
 
-JSON.parse(
-
-localStorage.getItem(
-"idnovaData"
-)
+localStorage.getItem("idnovaData")
 
 ||
 
@@ -638,7 +670,7 @@ localStorage.getItem(
 
 
 
-let order=
+let orderId =
 
 "ID"
 
@@ -651,47 +683,95 @@ Date.now();
 
 
 
+let order = {
 
-let item={
 
 
-id:order,
+id:
 
+orderId,
+
+
+
+// 咸鱼订单编号
+
+orderNo:
+
+document
+.getElementById("orderNo")
+.value,
+
+
+
+// 客户姓名
 
 name:
 
-document.getElementById("name").value,
+document
+.getElementById("name")
+.value,
 
+
+
+// 电话
 
 phone:
 
-document.getElementById("phone").value,
+document
+.getElementById("phone")
+.value,
 
 
+
+// 注册邮箱
+
+email:
+
+document
+.getElementById("email")
+.value,
+
+
+
+// 注册地区
 
 country:
 
-document.getElementById("country").value,
+document
+.getElementById("country")
+.value,
 
 
+
+// 服务类型
 
 service:
 
-document.getElementById("service").value,
+document
+.getElementById("service")
+.value,
 
 
+
+// 客户备注
 
 desc:
 
-document.getElementById("desc").value,
+document
+.getElementById("desc")
+.value,
 
 
+
+// 状态
 
 status:
 
 "待审核",
 
 
+
+// 时间
 
 time:
 
@@ -707,9 +787,23 @@ new Date()
 
 
 
-if(!item.name ||
-!item.country ||
-!item.service){
+
+// 必填检查
+
+
+if(
+
+!order.orderNo ||
+
+!order.name ||
+
+!order.phone ||
+
+!order.email ||
+
+!order.country
+
+){
 
 
 alert(
@@ -726,8 +820,12 @@ return;
 
 
 
-data.push(item);
 
+
+// 保存订单
+
+
+data.push(order);
 
 
 
@@ -746,7 +844,7 @@ JSON.stringify(data)
 
 alert(
 
-"申请提交成功！\n订单编号："+order
+"提交成功！\n订单编号："+orderId
 
 );
 
@@ -754,13 +852,29 @@ alert(
 
 
 
+
+// 清空表单
+
+
+document
+.getElementById("orderNo")
+.value="";
+
+
 document
 .getElementById("name")
 .value="";
 
+
 document
 .getElementById("phone")
 .value="";
+
+
+document
+.getElementById("email")
+.value="";
+
 
 document
 .getElementById("desc")
